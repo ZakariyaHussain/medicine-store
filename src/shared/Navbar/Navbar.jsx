@@ -1,12 +1,35 @@
 import React from 'react';
-import { NavLink } from 'react-router';
+import { Link, NavLink } from 'react-router';
+import UseAuth from '../../hooks/UseAuth';
+//import ProfastLogo from '../ProfastLogo/ProfastLogo';
+
 
 const Navbar = () => {
+    //const { user, logout } = UseAuth();
     const navItems = <>
-        <li><NavLink to="/">Home</NavLink></li>
-        <li><NavLink to="shop">Shop</NavLink></li>
-        
+        <li><NavLink to='/'>Home</NavLink></li>
+        <li><NavLink to='/coverage'>Coverage</NavLink></li>
+        <li><NavLink to='/sendparcel'>Send Parcel</NavLink></li>
+        <li><NavLink to='/beARider'>Be A Rider</NavLink></li>
+        <li><NavLink to='/about'>About Us</NavLink></li>
+        {/* {
+            user && <>
+                <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
+
+            </>
+        } */}
+
     </>
+    //logout
+    // const handleLogout = () => {
+    //     logout()
+    //         .then(() => {
+    //             console.log('Logout Successful');
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //         })
+    // }
     return (
         <div className="navbar bg-base-100 shadow-sm">
             <div className="navbar-start">
@@ -22,17 +45,25 @@ const Navbar = () => {
                         }
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">Medicine Store</a>
+                
+                <span className='btn btn-ghost text-xl'>
+                    {/* <ProfastLogo></ProfastLogo> */}
+                    logo
+                </span>
+
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-2">
+                <ul className="menu menu-horizontal px-1">
                     {
                         navItems
                     }
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Button</a>
+                <Link className='btn btn-primary text-black'>Logout</Link>
+                {/* {
+                    user ? <Link onClick={handleLogout} className='btn btn-primary text-black'>Logout</Link> : <Link to='/login' className='btn btn-primary text-black'>Login</Link>
+                } */}
             </div>
         </div>
     );
