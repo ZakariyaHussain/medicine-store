@@ -63,8 +63,8 @@ const Register = () => {
     }
     return (
 
-        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-            <div className="card-body">
+        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl mx-auto">
+            <div className="card-body justify-center">
                 <h1 className="text-5xl font-bold">Create an Account!</h1>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <fieldset className="fieldset">
@@ -98,8 +98,16 @@ const Register = () => {
                         {
                             errors.password?.type === 'minLength' && <p className='text-red-600'>password need at least 6 characters or longer</p>
                         }
+                        {/* role field */}
+                        <label className="label">Role</label>
+                        <select name="" id="" className='border border-solid border-[#00000028] p-2 rounded'>
+                            <option value="user">User</option>
+                            <option value="seller">Seller</option>
+                        </select>
+
+
                         <div><p><small>Have an account?<Link to='/joinUs' className='btn btn-link'>Login</Link></small></p></div>
-                        <button className="btn btn-primary text-neutral mt-4">Register Now</button>
+                        <button className="btn bg-[#22b1a4] text-neutral mt-4">Sign Up</button>
                     </fieldset>
                 </form>
             </div>

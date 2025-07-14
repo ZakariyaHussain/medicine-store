@@ -77,7 +77,7 @@ const Navbar = () => {
             </ul>
           </div>
         ) : (
-          <Link to="/joinUs" className="btn btn-primary btn-sm">Join Us</Link>
+          <Link to="/joinUs" className="btn bg-[#22b1a4] btn-sm">Join Us</Link>
         )}
       </div>
     </nav>
