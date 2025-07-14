@@ -98,7 +98,7 @@ const Register = () => {
                         {
                             errors.password?.type === 'minLength' && <p className='text-red-600'>password need at least 6 characters or longer</p>
                         }
-                        <div><p><small>Have an account?<Link to='/login' className='btn btn-link'>Login</Link></small></p></div>
+                        <div><p><small>Have an account?<Link to='/joinUs' className='btn btn-link'>Login</Link></small></p></div>
                         <button className="btn btn-primary text-neutral mt-4">Register Now</button>
                     </fieldset>
                 </form>

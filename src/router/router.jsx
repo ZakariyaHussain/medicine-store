@@ -5,6 +5,7 @@ import Home from "../pages/Home/Home";
 import AuthLayout from "../layouts/AuthLayout";
 import Login from "../pages/Home/Authentication/Login";
 import Register from "../pages/Home/Authentication/Register";
+import Shop from "../pages/Home/Shop";
 
 export const router = createBrowserRouter([
     {
@@ -14,6 +15,10 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 Component: Home
+            },
+            {
+                path: "shop",
+                Component: Shop
             }
         ]
     },

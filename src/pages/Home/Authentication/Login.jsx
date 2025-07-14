@@ -53,7 +53,7 @@ const Login = () => {
                 </fieldset>
                 <p><small>Are you new this website?<Link to='/register' state={{from}} className='btn btn-link'>Register</Link></small></p>
             </form>
-            {/* <SocialLogin></SocialLogin> */}
+            <SocialLogin></SocialLogin>
         </div>
     );
 };
