@@ -33,7 +33,7 @@ const Navbar = () => {
             {navItems}
           </ul>
         </div>
-        <Link to="/" className="btn btn-ghost text-xl">Medicine Store</Link>
+        <Link to="/" className="btn btn-ghost text-xl"><img src="https://i.ibb.co/0VskKqhF/logo.jpg" alt="Logo" /></Link>
       </div>
 
       {/* --- center nav links (desktop) --- */}
