@@ -103,6 +103,7 @@ const Register = () => {
                         <select name="" id="" className='border border-solid border-[#00000028] p-2 rounded'>
                             <option value="user">User</option>
                             <option value="seller">Seller</option>
+                            <option value="admin">Admin</option>
                         </select>
 
 

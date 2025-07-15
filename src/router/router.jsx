@@ -7,11 +7,13 @@ import Login from "../pages/Home/Authentication/Login";
 import Register from "../pages/Home/Authentication/Register";
 import Shop from "../pages/Home/Shop";
 import DashboardLayout from "../layouts/DashboardLayout";
+import Error from "../shared/Error/Error";
 
 export const router = createBrowserRouter([
     {
         path: "/",
-        Component: RootLayout,
+        element: <RootLayout></RootLayout>,
+        errorElement: <Error></Error>,
         children: [
             {
                 index: true,
