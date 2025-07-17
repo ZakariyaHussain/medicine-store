@@ -46,9 +46,9 @@ const DashboardLayout = () => {
                     {/* Sidebar content here */}
                     <Link to='/'><img src="https://i.ibb.co/0VskKqhF/logo.jpg" alt="Logo" /></Link>
 
-                    <li><a><FaHome className="inline mr-2" />Home</a></li>
+                    <li><NavLink to='/'><FaHome className="inline mr-2" />Home</NavLink></li>
 
-                    <li><NavLink to='/dashboard/myParcels'><FaBox className="inline mr-2" />My Parcel</NavLink></li>
+                    <li><NavLink to='/dashboard/ManageMedicine'><FaBox className="inline mr-2" />Manage Medicine</NavLink></li>
 
                     <li><NavLink to='/dashboard/paymentHistory'><FaMoneyCheckAlt className="inline mr-2" />Payment History</NavLink></li>
 

@@ -5,9 +5,13 @@ import Home from "../pages/Home/Home";
 import AuthLayout from "../layouts/AuthLayout";
 import Login from "../pages/Home/Authentication/Login";
 import Register from "../pages/Home/Authentication/Register";
-import Shop from "../pages/Home/Shop";
+import Shop from "../pages/Shop/Shop";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Error from "../shared/Error/Error";
+import PrivateRoute from "../routes/PrivateRoute";
+import ManageMedicine from "../pages/Dashboard/Seller/ManageMedicine";
+import AddMedicine from "../pages/AddMedicine/AddMedicine";
+
 
 export const router = createBrowserRouter([
     {
@@ -22,6 +26,10 @@ export const router = createBrowserRouter([
             {
                 path: "shop",
                 Component: Shop
+            },
+            {
+                path: "addMedicine",
+                Component: AddMedicine
             }
         ]
     },
@@ -41,9 +49,12 @@ export const router = createBrowserRouter([
     },
     {
         path: "/dashboard",
-        Component: DashboardLayout,
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         children: [
-            
+            {
+                path: 'ManageMedicine',
+                Component: ManageMedicine
+            }
         ]
     }
 ]);
