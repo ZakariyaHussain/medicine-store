@@ -155,7 +155,7 @@ const CategoryDetails = () => {
                                 <td>{index + 1}</td>
                                 <td>{med.itemName}</td>
                                 <td>{med.genericName}</td>
-                                <td>{med.price}</td>
+                                <td>{med.price} ৳</td>
                                 <td>{med.discount || 0}%</td>
                                 <td className="flex gap-2">
                                     <Link to={`/medicines/${med._id}`}><button className="btn btn-sm btn-primary">Select</button></Link>

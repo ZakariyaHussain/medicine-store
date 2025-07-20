@@ -17,7 +17,9 @@ const AddMedicine = () => {
         const medicineData = Object.fromEntries(formData.entries());
         medicineData.email = user?.email;
         medicineData.image = newPhotoUrl;
-        console.log(medicineData);
+        medicineData.price = parseFloat(form.price.value);
+        medicineData.discount = parseFloat(form.discount.value);
+        //console.log(medicineData);
         
 
 
@@ -77,7 +79,9 @@ const AddMedicine = () => {
                             <option value="Capsule">Capsule</option>
                             <option value="Syrup">Syrup</option>
                             <option value="Injection">Injection</option>
-                            <option value="Ointment">Ointment</option>
+                            <option value="Cream">Cream/Ointment</option>
+                            <option value="Suppository">Suppository</option>
+                            <option value="Other">Other</option>
                         </select>
                     </fieldset>
 
@@ -88,6 +92,7 @@ const AddMedicine = () => {
                             <option value="Square">Square</option>
                             <option value="Acme">Acme</option>
                             <option value="Renata">Renata</option>
+                            <option value="Renata">Healthcare</option>
                             <option value="Other">Other</option>
                         </select>
                     </fieldset>

@@ -27,7 +27,7 @@ const MedicineModal = ({ medicine, isOpen, onClose }) => {
             <p><strong>Category:</strong> {category}</p>
             <p><strong>Company:</strong> {company}</p>
             <p><strong>Mass Unit:</strong> {unit}</p>
-            <p><strong>Price:</strong> ${price}</p>
+            <p><strong>Price:</strong> {price} ৳</p>
             <p><strong>Discount:</strong> {discount || 0}%</p>
           </div>
         </div>

@@ -13,7 +13,7 @@ const CategoryCard = ({ category, image, count }) => {
     return (
         <Link to={`/category/${category}`}>
             <div className="card bg-base-100 shadow-xl">
-                <figure className='max-h-[250px]'>
+                <figure className='h-[250px]'>
                     <img
                         src={image}
                         alt="Shoes" />
