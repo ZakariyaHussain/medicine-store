@@ -11,6 +11,9 @@ import Error from "../shared/Error/Error";
 import PrivateRoute from "../routes/PrivateRoute";
 import ManageMedicine from "../pages/Dashboard/Seller/ManageMedicine";
 import AddMedicine from "../pages/AddMedicine/AddMedicine";
+import Cart from "../pages/Cart/Cart";
+import CategoryDetails from "../pages/Category/CategoryDetails";
+//import axios from "axios";
 
 
 export const router = createBrowserRouter([
@@ -21,6 +24,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
+                loader: () => fetch('http://localhost:5000/medicines'),
                 Component: Home
             },
             {
@@ -30,7 +34,17 @@ export const router = createBrowserRouter([
             {
                 path: "addMedicine",
                 Component: AddMedicine
+            },
+            {
+                path: 'medicines/:id',
+                loader: ({params})=> fetch(`http://localhost:5000/medicines/${params.id}`),
+                Component: Cart
+            },
+            {
+                path: 'category/:categoryName',
+                Component: CategoryDetails
             }
+            
         ]
     },
     {

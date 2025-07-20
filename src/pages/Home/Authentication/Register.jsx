@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import UseAuth from '../../../hooks/UseAuth';
 import { Link, useLocation, useNavigate } from 'react-router';
-import axios from 'axios';
+//import axios from 'axios';
 import useAxios from '../../../hooks/useAxios';
+import { imageUrl } from '../../../api/Utility';
 //import useAxios from '../../../hooks/useAxios';
 
 const Register = () => {
@@ -23,12 +24,16 @@ const Register = () => {
                 console.log(result.user);
                 const userProfile = {
                     displayName: data.name,
-                    photoUrl: profilePicture,
+                    photoURL: profilePicture,
                 }
+                // 1. Update profile first
+                await updateUserProfile(userProfile);
+                await result.user.reload(); // ✅ Refresh the current user
 
                 //update user info in database
                 const userInfo = {
-                    email: data.user,
+                    //email: data.user,
+                    email: data.email,
                     role: 'user', //default role
                     created_at: new Date().toISOString(),
                     last_log_in: new Date().toISOString(),
@@ -50,16 +55,12 @@ const Register = () => {
             .catch(error => {
                 console.error(error);
             })
+            
     }
     const handleImgUpload = async (e) => {
         const photo = e.target.files[0];
-        console.log(photo);
-        const formData = new FormData();
-        formData.append('image', photo);
-        const imgUploadUrl = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_upload_key}`;
-        //const res = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_upload_key}`);
-        const res = await axios.post(imgUploadUrl, formData);
-        setProfilePicture(res.data.data.url);
+        const newPhotoUrl = await imageUrl(photo);
+        setProfilePicture(newPhotoUrl);
     }
     return (
 

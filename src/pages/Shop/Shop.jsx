@@ -1,31 +1,45 @@
 import React, { useEffect, useState } from 'react';
+import { Eye } from 'lucide-react'; // Lucide icon for eye
+//import { useNavigate } from 'react-router-dom';
+import MedicineModal from '../../components/MedicineModal/MedicineModal';
+import axios from 'axios';
+import { Link } from 'react-router';
 
 const Shop = () => {
     const [medicines, setMedicines] = useState([]);
+    const [selectedMedicine, setSelectedMedicine] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
-        fetch('http://localhost:5000/medicines')
-            .then(res => res.json())
-            .then(data => setMedicines(data));
-    }, []);
+    // Fetch data from backend
+    axios.get('http://localhost:5000/medicines')
+      .then(res => setMedicines(res.data))
+      .catch(err => console.error("Error fetching medicines:", err));
+  }, []);
+
+    const handleView = (medicine) => {
+        setSelectedMedicine(medicine);
+        setIsModalOpen(true);
+    };
+
+    const handleClose = () => {
+        setIsModalOpen(false);
+        setSelectedMedicine(null);
+    };
 
     return (
         <div className="p-5">
-            <h2 className="text-xl font-bold mb-4">Available Medicines</h2>
+            <h2 className="text-xl font-bold mb-4">Shop Page</h2>
             <div className="overflow-x-auto">
                 <table className="table table-zebra w-full">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Item Name</th>
-                            <th>Generic Name</th>
-                            <th>Description</th>
-                            <th>Image</th>
-                            <th>Category</th>
-                            <th>Company</th>
-                            <th>Mass Unit</th>
+                            <th>Item</th>
+                            <th>Generic</th>
                             <th>Price</th>
-                            <th>Discount (%)</th>
+                            <th>Discount</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,20 +48,29 @@ const Shop = () => {
                                 <td>{index + 1}</td>
                                 <td>{med.itemName}</td>
                                 <td>{med.genericName}</td>
-                                <td>{med.description}</td>
-                                <td>
-                                    <img src={med.imageURL} alt={med.itemName} className="w-16 h-16 object-cover" />
-                                </td>
-                                <td>{med.category}</td>
-                                <td>{med.company}</td>
-                                <td>{med.massUnit}</td>
                                 <td>{med.price}</td>
-                                <td>{med.discount || 0}</td>
+                                <td>{med.discount || 0}%</td>
+                                <td className="flex gap-2">
+                                    <Link to={`/medicines/${med._id}`}><button className="btn btn-sm btn-primary">Select</button></Link>
+                                    <button
+                                        className="btn btn-sm btn-outline"
+                                        onClick={() => handleView(med)}
+                                    >
+                                        <Eye size={18} />
+                                    </button>
+                                </td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
             </div>
+
+            {/* Modal Component */}
+            <MedicineModal
+                medicine={selectedMedicine}
+                isOpen={isModalOpen}
+                onClose={handleClose}
+            />
         </div>
     );
 };

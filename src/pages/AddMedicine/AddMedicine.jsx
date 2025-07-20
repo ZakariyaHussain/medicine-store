@@ -1,28 +1,44 @@
-import React from 'react';
+import React, { use } from 'react';
+//import { AuthContext } from '../../contexts/AuthContext';
+import Swal from 'sweetalert2';
+import axios from 'axios';
+import { imageUrl } from '../../api/Utility';
 import { AuthContext } from '../../contexts/AuthContext';
 
 const AddMedicine = () => {
-    const { user } = React.useContext(AuthContext);
+    const { user } = use(AuthContext);
 
-    const handleAddMedicineForm = e => {
+    const handleAddMedicineForm = async e => {
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form);
+        const photo = form.image.files[0];
+        const newPhotoUrl = await imageUrl(photo);
         const medicineData = Object.fromEntries(formData.entries());
         medicineData.email = user?.email;
+        medicineData.image = newPhotoUrl;
         console.log(medicineData);
+        
 
-        //data send to server
-        fetch('http://localhost:5000/medicines', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(medicineData)
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log('Response:', data);
-            });
+
+        try {
+            const res = await axios.post('http://localhost:5000/medicines', medicineData, newPhotoUrl);
+            if (res.data.insertedId) {
+                Swal.fire({
+                    icon: "success",
+                    title: "New medicine listing successful",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                //form.reset(); // optional
+            }
+        } catch (err) {
+            console.error("Error submitting medicine:", err);
+        }
+
+
     }
+
 
     return (
         <div className='p-10'>
@@ -50,8 +66,8 @@ const AddMedicine = () => {
                     </fieldset>
 
                     <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
-                        <label className="label">Image URL</label>
-                        <input type="text" name='image' className="input w-full" placeholder="Enter image URL" required />
+                        <label className="label">Image</label>
+                        <input type="file" name='image' className="input w-full" accept='image/*' placeholder="Enter image" required />
                     </fieldset>
 
                     <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
