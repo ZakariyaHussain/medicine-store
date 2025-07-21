@@ -17,7 +17,7 @@ const DiscountSection = () => {
 
   return (
     <div className='my-12 px-6'>
-      <h2 className='text-center text-2xl font-bold mb-6'>💊 Discounted Medicines</h2>
+      <h2 className='text-center text-2xl font-bold mb-8'>💊 Discounted Medicines</h2>
 
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
