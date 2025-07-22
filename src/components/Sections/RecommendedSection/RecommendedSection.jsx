@@ -22,7 +22,7 @@ const RecommendedSection = () => {
               </figure>
               <div className='card-body'>
                 <h3 className='text-lg font-bold'>{med.name}</h3>
-                <p>Price: ${med.price}</p>
+                <p>Price: {med.price} ৳</p>
               </div>
             </div>
           ))

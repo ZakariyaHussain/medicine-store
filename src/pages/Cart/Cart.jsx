@@ -1,59 +1,62 @@
 import React from 'react';
-import { useLoaderData } from 'react-router';
-//import { useCart } from '../context/CartContext';
+import { useCart } from '../../contexts/CartContext';
+import { Trash2, Plus, Minus } from 'lucide-react';
 
 const Cart = () => {
-  //const { cartItems, updateQuantity, removeItem, clearCart } = useCart();
-  const medicine = useLoaderData();
-  console.log(medicine);
+  const { cart, updateQuantity, removeFromCart } = useCart();
+
+  const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  if (cart.length === 0) {
+    return <div className="p-5 text-center text-gray-500">Your cart is empty.</div>;
+  }
 
   return (
-    // <div className="container mx-auto p-4">
-    //   <h2 className="text-2xl font-bold mb-4">Your Cart</h2>
-
-    //   {cartItems.length === 0 ? (
-    //     <p>Your cart is empty.</p>
-    //   ) : (
-    //     <>
-    //       <table className="table w-full">
-    //         <thead>
-    //           <tr>
-    //             <th>Name</th>
-    //             <th>Company</th>
-    //             <th>Price/unit</th>
-    //             <th>Quantity</th>
-    //             <th>Actions</th>
-    //           </tr>
-    //         </thead>
-    //         <tbody>
-    //           {cartItems.map(item => (
-    //             <tr key={item._id}>
-    //               <td>{item.itemName}</td>
-    //               <td>{item.company}</td>
-    //               <td>${item.price}</td>
-    //               <td className="flex items-center gap-2">
-    //                 <button className="btn btn-sm" onClick={() => updateQuantity(item._id, -1)}>-</button>
-    //                 {item.quantity}
-    //                 <button className="btn btn-sm" onClick={() => updateQuantity(item._id, 1)}>+</button>
-    //               </td>
-    //               <td>
-    //                 <button className="btn btn-error btn-sm" onClick={() => removeItem(item._id)}>Remove</button>
-    //               </td>
-    //             </tr>
-    //           ))}
-    //         </tbody>
-    //       </table>
-    //       <div className="mt-6 flex justify-between">
-    //         <button className="btn btn-outline btn-error" onClick={clearCart}>Clear Cart</button>
-    //         <h3 className="text-xl font-bold">
-    //           Total: ${cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)}
-    //         </h3>
-    //       </div>
-    //     </>
-    //   )}
-    // </div>
-    <div>
-      Cart page
+    <div className="p-5">
+      <h2 className="text-2xl font-bold mb-4">Your Cart</h2>
+      <div className="overflow-x-auto">
+        <table className="table w-full table-zebra">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Company</th>
+              <th>Price</th>
+              <th>Qty</th>
+              <th>Total</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {cart.map((med, index) => (
+              <tr key={med._id}>
+                <td>{index + 1}</td>
+                <td>{med.itemName}</td>
+                <td>{med.companyName || 'N/A'}</td>
+                <td>{med.price} ৳</td>
+                <td className="flex items-center gap-2">
+                  <button onClick={() => updateQuantity(med._id, -1)} className="btn btn-sm btn-outline">
+                    <Minus size={14} />
+                  </button>
+                  <span>{med.quantity}</span>
+                  <button onClick={() => updateQuantity(med._id, +1)} className="btn btn-sm btn-outline">
+                    <Plus size={14} />
+                  </button>
+                </td>
+                <td>{med.price * med.quantity} ৳</td>
+                <td>
+                  <button onClick={() => removeFromCart(med._id)} className="btn btn-sm btn-error">
+                    <Trash2 size={16} />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <div className="text-right mt-4 font-semibold text-lg">
+          Total: {totalPrice} ৳
+        </div>
+      </div>
     </div>
   );
 };

@@ -134,6 +134,7 @@ const CategoryDetails = () => {
         //     ))}
         //   </div>
         // </div>
+        
         //start
         <div className="p-5">
             <h2 className="text-2xl font-bold mb-4">Category: {categoryName}</h2>

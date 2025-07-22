@@ -35,9 +35,13 @@ export const router = createBrowserRouter([
                 path: "addMedicine",
                 Component: AddMedicine
             },
+            // {
+            //     path: 'medicines/:id',
+            //     loader: ({params})=> fetch(`http://localhost:5000/medicines/${params.id}`),
+            //     Component: Cart
+            // },
             {
-                path: 'medicines/:id',
-                loader: ({params})=> fetch(`http://localhost:5000/medicines/${params.id}`),
+                path: 'cart',
                 Component: Cart
             },
             {

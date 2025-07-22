@@ -2,9 +2,12 @@ import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { ShoppingCart, Globe } from 'lucide-react';
 import UseAuth from '../../hooks/UseAuth';
+import { useCart } from '../../contexts/CartContext';
 
 const Navbar = () => {
   const { user, logout } = UseAuth();
+  const {cart} = useCart();
+  
 
   const handleLogout = () => {
     logout()
@@ -59,7 +62,8 @@ const Navbar = () => {
         <Link to="/cart" className="btn btn-ghost btn-circle">
           <div className="indicator">
             <ShoppingCart className="w-5 h-5" />
-            <span className="badge badge-sm indicator-item">2</span>
+            <span className="badge badge-sm indicator-item">{cart.length}</span>
+            
           </div>
         </Link>
 
