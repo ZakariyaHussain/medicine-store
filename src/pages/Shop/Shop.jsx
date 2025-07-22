@@ -6,6 +6,7 @@ import MedicineModal from '../../components/MedicineModal/MedicineModal';
 import { Link } from 'react-router';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { useCart } from '../../contexts/CartContext';
+import toast from 'react-hot-toast';
 
 // const fetchMedicines = async () => {
 //   const res = await axios.get('http://localhost:5000/medicines');
@@ -89,10 +90,11 @@ const Shop = () => {
                                     </Link> */}
                                     <button
                                         className="btn btn-sm btn-primary"
-                                        
+
                                         onClick={() => {
-                                            console.log('Selected:', med.itemName);
-                                            addToCart(med)}}
+                                            addToCart(med)
+                                            toast.success(`${med.itemName} added to cart!`);
+                                        }}
                                     >
                                         Select
                                     </button>

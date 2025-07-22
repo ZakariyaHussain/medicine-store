@@ -13,6 +13,8 @@ import ManageMedicine from "../pages/Dashboard/Seller/ManageMedicine";
 import AddMedicine from "../pages/AddMedicine/AddMedicine";
 import Cart from "../pages/Cart/Cart";
 import CategoryDetails from "../pages/Category/CategoryDetails";
+import Checkout from "../pages/CheckOut/CheckOut";
+import Invoice from "../pages/Invoice/Invoice";
 //import axios from "axios";
 
 
@@ -47,6 +49,14 @@ export const router = createBrowserRouter([
             {
                 path: 'category/:categoryName',
                 Component: CategoryDetails
+            },
+            {
+                path: 'checkout',
+                Component: Checkout
+            },
+            {
+                path: 'invoice',
+                Component: Invoice
             }
             
         ]

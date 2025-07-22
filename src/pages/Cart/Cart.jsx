@@ -1,9 +1,12 @@
 import React from 'react';
 import { useCart } from '../../contexts/CartContext';
 import { Trash2, Plus, Minus } from 'lucide-react';
+import { Link } from 'react-router';
+//import { useNavigate } from 'react-router';
 
 const Cart = () => {
   const { cart, updateQuantity, removeFromCart } = useCart();
+  //const navigate = useNavigate();
 
   const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
@@ -32,7 +35,7 @@ const Cart = () => {
               <tr key={med._id}>
                 <td>{index + 1}</td>
                 <td>{med.itemName}</td>
-                <td>{med.companyName || 'N/A'}</td>
+                <td>{med.company || 'N/A'}</td>
                 <td>{med.price} ৳</td>
                 <td className="flex items-center gap-2">
                   <button onClick={() => updateQuantity(med._id, -1)} className="btn btn-sm btn-outline">
@@ -56,6 +59,14 @@ const Cart = () => {
         <div className="text-right mt-4 font-semibold text-lg">
           Total: {totalPrice} ৳
         </div>
+        <Link to='/checkout'>
+            <button
+              className="btn btn-success w-full mt-8"
+            >
+              Proceed to Checkout
+            </button>
+          </Link>
+
       </div>
     </div>
   );

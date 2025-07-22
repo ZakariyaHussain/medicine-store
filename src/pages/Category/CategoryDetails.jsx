@@ -87,6 +87,7 @@ import { Eye } from 'lucide-react'; // Lucide icon for eye
 import MedicineModal from '../../components/MedicineModal/MedicineModal';
 //import axios from 'axios';
 import { Link } from 'react-router';
+import { useCart } from '../../contexts/CartContext';
 
 const CategoryDetails = () => {
     const { categoryName } = useParams();
@@ -94,6 +95,8 @@ const CategoryDetails = () => {
     //const [medicines, setMedicines] = useState([]);
     const [selectedMedicine, setSelectedMedicine] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const { addToCart } = useCart();
 
 
 
@@ -134,7 +137,7 @@ const CategoryDetails = () => {
         //     ))}
         //   </div>
         // </div>
-        
+
         //start
         <div className="p-5">
             <h2 className="text-2xl font-bold mb-4">Category: {categoryName}</h2>
@@ -159,7 +162,15 @@ const CategoryDetails = () => {
                                 <td>{med.price} ৳</td>
                                 <td>{med.discount || 0}%</td>
                                 <td className="flex gap-2">
-                                    <Link to={`/medicines/${med._id}`}><button className="btn btn-sm btn-primary">Select</button></Link>
+                                    <button
+                                        className="btn btn-sm btn-primary"
+                                        
+                                        onClick={() => {
+                                            console.log('Selected:', med.itemName);
+                                            addToCart(med)}}
+                                    >
+                                        Select
+                                    </button>
                                     <button
                                         className="btn btn-sm btn-outline"
                                         onClick={() => handleView(med)}

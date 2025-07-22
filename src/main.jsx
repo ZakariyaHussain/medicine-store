@@ -62,21 +62,28 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query';
 import { CartProvider } from './contexts/CartContext.jsx';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
 
 
 const queryClient = new QueryClient();
+const stripePromise = loadStripe('pk_test_51RgDIkRaKoptteqIzaWvU7A53x8ReucjmtXEOBcwtSMqk8OMxXlQLBo0fjH1AWXpWvbOd3IfgqajhjpTFqybbV2100rSFSVcFv');
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <CartProvider>
-        <div className="max-w-7xl mx-auto">
-          <AuthProvider>
-            <RouterProvider router={router} />
-            <Toaster position="top-right" reverseOrder={false} />
-          </AuthProvider>
-        </div>
-      </CartProvider>
+
+      <div className="max-w-7xl mx-auto">
+        <AuthProvider>
+          <CartProvider>
+            <Elements stripe={stripePromise}>
+              <RouterProvider router={router} />
+              <Toaster position="top-right" reverseOrder={false} />
+            </Elements>
+          </CartProvider>
+        </AuthProvider>
+      </div>
+
     </QueryClientProvider>
   </StrictMode>
 );
