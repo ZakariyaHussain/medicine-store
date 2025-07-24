@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import UseAuth from '../../../hooks/UseAuth';
+import UseAuth from '../../../hooks/useAuth';
 import { Link, useLocation, useNavigate } from 'react-router';
-//import axios from 'axios';
-import useAxios from '../../../hooks/useAxios';
 import { imageUrl } from '../../../api/Utility';
-//import useAxios from '../../../hooks/useAxios';
+import toast from 'react-hot-toast';
+import useAxios from '../../../hooks/useAxios';
+
 
 const Register = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
@@ -17,46 +17,39 @@ const Register = () => {
     const navigate = useNavigate();
     const from = location.state?.from || '/';
 
+
     const onSubmit = data => {
-        console.log(data);
         createUser(data.email, data.password)
             .then(async (result) => {
-                console.log(result.user);
                 const userProfile = {
                     displayName: data.name,
                     photoURL: profilePicture,
-                }
-                // 1. Update profile first
-                await updateUserProfile(userProfile);
-                await result.user.reload(); // ✅ Refresh the current user
+                };
 
-                //update user info in database
+                // Update Firebase profile
+                await updateUserProfile(userProfile);
+                await result.user.reload();
+
+                // Save user to DB
                 const userInfo = {
-                    //email: data.user,
                     email: data.email,
-                    role: 'user', //default role
+                    role: data.role || 'user',
                     created_at: new Date().toISOString(),
                     last_log_in: new Date().toISOString(),
-                }
+                };
 
                 const userRes = await axiosInstance.post('/users', userInfo);
                 console.log(userRes.data);
 
-                //update user profile in firebase
-                updateUserProfile(userProfile)
-                    .then(() => {
-                        console.log('profile picture updated');
-                        navigate(from);
-                    })
-                    .catch(error => {
-                        console.log(error);
-                    })
+                toast.success('Registration successful!');
+                navigate(from);
             })
             .catch(error => {
                 console.error(error);
-            })
-            
-    }
+                toast.error('Registration failed!');
+            });
+    };
+
     const handleImgUpload = async (e) => {
         const photo = e.target.files[0];
         const newPhotoUrl = await imageUrl(photo);
@@ -101,11 +94,11 @@ const Register = () => {
                         }
                         {/* role field */}
                         <label className="label">Role</label>
-                        <select name="" id="" className='border border-solid border-[#00000028] p-2 rounded'>
+                        <select {...register('role')} className='border border-solid border-[#00000028] p-2 rounded'>
                             <option value="user">User</option>
                             <option value="seller">Seller</option>
-                            <option value="admin">Admin</option>
                         </select>
+
 
 
                         <div><p><small>Have an account?<Link to='/joinUs' className='btn btn-link'>Login</Link></small></p></div>

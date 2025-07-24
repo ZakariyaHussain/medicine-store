@@ -15,6 +15,7 @@ import Cart from "../pages/Cart/Cart";
 import CategoryDetails from "../pages/Category/CategoryDetails";
 import Checkout from "../pages/CheckOut/CheckOut";
 import Invoice from "../pages/Invoice/Invoice";
+import UserHome from "../pages/Dashboard/User/UserHome";
 //import axios from "axios";
 
 
@@ -82,6 +83,10 @@ export const router = createBrowserRouter([
             {
                 path: 'ManageMedicine',
                 Component: ManageMedicine
+            },
+            {
+                path: 'userHome',
+                Component: UserHome
             }
         ]
     }

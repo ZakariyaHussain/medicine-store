@@ -5,7 +5,8 @@ import { useCart } from '../../contexts/CartContext';
 import CheckoutForm from '../../components/CheckoutForm/CheckoutForm';
 
 const Checkout = () => {
-  const { cart, removeFromCart, updateQuantity } = useCart();
+  //const { cart, removeFromCart, updateQuantity } = useCart();
+  const { cart } = useCart();
   //const navigate = useNavigate();
 
 //   const handlePlaceOrder = () => {

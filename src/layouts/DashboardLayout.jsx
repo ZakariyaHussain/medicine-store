@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link, NavLink, Outlet } from 'react-router';
-//import ProfastLogo from '../shared/ProfastLogo/ProfastLogo';
 import { FaBox, FaHome, FaHourglassHalf, FaMapMarkedAlt, FaMoneyCheckAlt, FaUserEdit, FaUsers } from 'react-icons/fa';
+import UseAuth from '../hooks/useAuth';
 
 const DashboardLayout = () => {
-
+    //const { user } = UseAuth();
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -44,7 +44,11 @@ const DashboardLayout = () => {
                 <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                 <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
                     {/* Sidebar content here */}
+
                     <Link to='/'><img src="https://i.ibb.co/0VskKqhF/logo.jpg" alt="Logo" /></Link>
+
+
+                    <li><NavLink to='/dashboard/userHome'><FaHome className="inline mr-2" />User Home</NavLink></li>
 
                     <li><NavLink to='/'><FaHome className="inline mr-2" />Home</NavLink></li>
 

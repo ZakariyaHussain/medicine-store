@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { ShoppingCart, Globe } from 'lucide-react';
-import UseAuth from '../../hooks/UseAuth';
+import UseAuth from '../../hooks/useAuth';
 import { useCart } from '../../contexts/CartContext';
 
 const Navbar = () => {

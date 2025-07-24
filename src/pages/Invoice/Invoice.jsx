@@ -43,7 +43,7 @@ const Invoice = () => {
             <tr key={item._id}>
               <td className="p-2">{item.itemName}</td>
               <td className="p-2">{item.company}</td>
-              <td className="p-2">৳{item.price}</td>
+              <td className="p-2">{item.price} ৳</td>
               <td className="p-2">{item.quantity}</td>
             </tr>
           ))}
@@ -51,7 +51,7 @@ const Invoice = () => {
         <tfoot>
           <tr>
             <td colSpan="4" className="p-2 font-bold text-right">
-              Grand Total: ৳{state.total}
+              Grand Total: {state.total} ৳
             </td>
           </tr>
         </tfoot>
