@@ -1,19 +1,22 @@
 import React from 'react';
 import { Link, NavLink, Outlet } from 'react-router';
 import { FaBox, FaHome, FaHourglassHalf, FaMapMarkedAlt, FaMoneyCheckAlt, FaUserEdit, FaUsers } from 'react-icons/fa';
-import UseAuth from '../hooks/useAuth';
+//import useAuth from '../hooks/useAuth';
+import UserLinks from './Dashboard/userLinks';
+import SellerLinks from './Dashboard/SellerLinks';
+import AdminLinks from './Dashboard/AdminLinks';
+import useRole from '../hooks/useRole';
+
+
 
 const DashboardLayout = () => {
-    //const { user } = UseAuth();
+    const [role, roleLoading] = useRole();
+    if (roleLoading) return <p className="p-4">Loading role...</p>;
+    console.log(role);
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content flex flex-col">
-                {/* Page content here */}
-                {/* <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">
-                    Open drawer
-                </label> */}
-
 
                 <div className="navbar bg-base-300 w-full lg:hidden">
                     <div className="flex-none">
@@ -47,23 +50,23 @@ const DashboardLayout = () => {
 
                     <Link to='/'><img src="https://i.ibb.co/0VskKqhF/logo.jpg" alt="Logo" /></Link>
 
+                    {/* user dashboard */}
+                    {
+                        role === "user" && <UserLinks></UserLinks>
+                    }
 
-                    <li><NavLink to='/dashboard/userHome'><FaHome className="inline mr-2" />User Home</NavLink></li>
 
-                    <li><NavLink to='/'><FaHome className="inline mr-2" />Home</NavLink></li>
+                    {/* seller dashboard */}
+                    
+                    {
+                        role === "seller" && <SellerLinks></SellerLinks>
+                    }
 
-                    <li><NavLink to='/dashboard/ManageMedicine'><FaBox className="inline mr-2" />Manage Medicine</NavLink></li>
-
-                    <li><NavLink to='/dashboard/paymentHistory'><FaMoneyCheckAlt className="inline mr-2" />Payment History</NavLink></li>
-
-                    <li><NavLink to='/dashboard/track'><FaMapMarkedAlt className="inline mr-2" />Track a Package</NavLink></li>
-
-                    <li><NavLink to='/dashboard/profile'><FaUserEdit className="inline mr-2" />Update Profile</NavLink></li>
-
-                    {/* riders links */}
-                    <li><NavLink to='/dashboard/activeRiders'><FaUsers className="inline mr-2" />Active Riders</NavLink></li>
-
-                    <li><NavLink to='/dashboard/pendingRiders'><FaHourglassHalf className="inline mr-2" />Pending Riders</NavLink></li>
+                    {/* admin links */}
+                    {/* {
+                        user?.role === "admin" && <AdminLinks></AdminLinks>
+                    } */}
+                    
                 </ul>
             </div>
         </div>

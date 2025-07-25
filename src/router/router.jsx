@@ -13,9 +13,9 @@ import ManageMedicine from "../pages/Dashboard/Seller/ManageMedicine";
 import AddMedicine from "../pages/AddMedicine/AddMedicine";
 import Cart from "../pages/Cart/Cart";
 import CategoryDetails from "../pages/Category/CategoryDetails";
-import Checkout from "../pages/CheckOut/CheckOut";
+import Checkout from "../pages/Checkout/Checkout";
 import Invoice from "../pages/Invoice/Invoice";
-import UserHome from "../pages/Dashboard/User/UserHome";
+import PaymentHistory from "../pages/Dashboard/User/PaymentHistory";
 //import axios from "axios";
 
 
@@ -85,8 +85,8 @@ export const router = createBrowserRouter([
                 Component: ManageMedicine
             },
             {
-                path: 'userHome',
-                Component: UserHome
+                path: 'paymentHistory',
+                Component: PaymentHistory
             }
         ]
     }

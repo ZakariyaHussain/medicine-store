@@ -52,7 +52,7 @@ const CheckoutForm = ({ total }) => {
                     email: user?.email,
                     amount: total,
                     transactionId: paymentResult.paymentIntent.id,
-                    date: new Date(),
+                    date: new Date().toLocaleString(),
                     status: 'paid',
                 };
 
