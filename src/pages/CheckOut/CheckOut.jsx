@@ -31,15 +31,6 @@ const Checkout = () => {
         <CheckoutForm total={totalPrice}></CheckoutForm>
       </div>
 
-      {/* <div className="text-right mb-4">
-        <p className="text-lg font-semibold">Total: {totalPrice} ৳</p>
-      </div>
-
-      <div className="text-right">
-        <button onClick={handlePlaceOrder} className="btn btn-primary">
-          Place Order
-        </button>
-      </div> */}
     </div>
   );
 };

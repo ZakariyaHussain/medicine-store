@@ -15,7 +15,8 @@ const AddMedicine = () => {
         const photo = form.image.files[0];
         const newPhotoUrl = await imageUrl(photo);
         const medicineData = Object.fromEntries(formData.entries());
-        medicineData.email = user?.email;
+        //medicineData.email = user?.email;
+        medicineData.sellerEmail = user?.email;
         medicineData.image = newPhotoUrl;
         medicineData.price = parseFloat(form.price.value);
         medicineData.discount = parseFloat(form.discount.value);
@@ -24,7 +25,7 @@ const AddMedicine = () => {
 
 
         try {
-            const res = await axios.post('http://localhost:5000/medicines', medicineData, newPhotoUrl);
+            const res = await axios.post('http://localhost:5000/medicines', medicineData); //, newPhotoUrl
             if (res.data.insertedId) {
                 Swal.fire({
                     icon: "success",

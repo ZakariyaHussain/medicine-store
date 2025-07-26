@@ -13,7 +13,7 @@ const CheckoutForm = ({ total }) => {
     const [processing, setProcessing] = useState(false);
     const [error, setError] = useState('');
     const navigate = useNavigate();
-    const { cart } = useCart();
+    const { cart, setCart } = useCart();
     const { user } = UseAuth();
 
     const handleSubmit = async (e) => {
@@ -52,13 +52,23 @@ const CheckoutForm = ({ total }) => {
                     email: user?.email,
                     amount: total,
                     transactionId: paymentResult.paymentIntent.id,
-                    date: new Date().toLocaleString(),
+                    // date: new Date().toLocaleString(),
+                    date: new Date().toISOString(),
                     status: 'paid',
+                    items: cart.map(item => ({
+                        _id: item._id,
+                        name: item.name,
+                        price: item.price,
+                        quantity: item.quantity,
+                        sellerEmail: item.sellerEmail || 'unknown',
+                    })),
                 };
 
                 const saveRes = await axiosSecure.post('/payments', paymentData);
                 if (saveRes.data.insertedId) {
                     toast.success('Payment saved!');
+                    // Clear the cart
+                    setCart([]);
 
                     // 5. Navigate to invoice page
                     navigate('/invoice', {

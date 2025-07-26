@@ -16,6 +16,8 @@ import CategoryDetails from "../pages/Category/CategoryDetails";
 import Checkout from "../pages/Checkout/Checkout";
 import Invoice from "../pages/Invoice/Invoice";
 import PaymentHistory from "../pages/Dashboard/User/PaymentHistory";
+import SellerHome from "../pages/Dashboard/Seller/SellerHome";
+import AskForAdvertisement from "../pages/Dashboard/Seller/AskForAdvertisement";
 //import axios from "axios";
 
 
@@ -80,6 +82,12 @@ export const router = createBrowserRouter([
         path: "/dashboard",
         element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         children: [
+            
+            //seller dashboard
+            {
+                path: "sellerHome",
+                Component: SellerHome
+            },
             {
                 path: 'ManageMedicine',
                 Component: ManageMedicine
@@ -87,6 +95,10 @@ export const router = createBrowserRouter([
             {
                 path: 'paymentHistory',
                 Component: PaymentHistory
+            },
+            {
+                path: "askForAdvertisement",
+                Component: AskForAdvertisement
             }
         ]
     }

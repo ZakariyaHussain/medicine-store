@@ -12,8 +12,6 @@ const SellerLinks = () => {
             <li><NavLink to='/dashboard/paymentHistory'><FaMoneyCheckAlt className="inline mr-2" />Payment History</NavLink></li>
 
             <li><NavLink to='/dashboard/askForAdvertisement'><FaMapMarkedAlt className="inline mr-2" />Ask For Advertisement</NavLink></li>
-
-            <li><NavLink to='/dashboard/profile'><FaUserEdit className="inline mr-2" />Update Profile</NavLink></li>
         </>
     );
 };
