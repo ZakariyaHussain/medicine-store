@@ -4,16 +4,18 @@ import Swal from 'sweetalert2';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 import { imageUrl } from '../../../api/Utility';
+import useAxios from '../../../hooks/useAxios';
 
 const ManageMedicine = () => {
     const { user } = React.useContext(AuthContext);
     const [showModal, setShowModal] = useState(false);
+    const axiosSecure = useAxios();
 
     // TanStack Query to fetch medicines added by this seller
     const { data: medicines = [], refetch, isLoading } = useQuery({
         queryKey: ['medicines', user?.email],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/medicines?sellerEmail=${user?.email}`);
+            const res = await axiosSecure.get(`/medicines?sellerEmail=${user?.email}`);
             return res.data;
         },
         enabled: !!user?.email
@@ -33,7 +35,7 @@ const ManageMedicine = () => {
         medicineData.discount = parseFloat(medicineData.discount || 0);
 
         try {
-            const res = await axios.post('http://localhost:5000/medicines', medicineData);
+            const res = await axios.post('https://medicine-store-seven.vercel.app/medicines', medicineData);
             if (res.data.insertedId) {
                 Swal.fire({
                     icon: "success",

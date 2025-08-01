@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaBox, FaHome, FaMapMarkedAlt, FaMoneyCheckAlt, FaUserEdit } from 'react-icons/fa';
-import { NavLink } from 'react-router';
+import { NavLink } from 'react-router-dom';
+//import { NavLink } from 'react-router';
 
 const SellerLinks = () => {
     return (

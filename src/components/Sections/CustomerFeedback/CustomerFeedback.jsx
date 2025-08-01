@@ -1,19 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
-
 import { Pagination, Autoplay } from 'swiper/modules';
+import useAxios from '../../../hooks/useAxios';
 
 const CustomerFeedback = () => {
-    const [feedbacks, setFeedbacks] = useState([]);
+    const axiosSecure = useAxios();
 
-    useEffect(() => {
-        axios.get('http://localhost:5000/feedback')
-            .then(res => setFeedbacks(res.data))
-            .catch(err => console.error(err));
-    }, []);
+    const { data: feedbacks = [], isLoading, isError, error } = useQuery({
+        queryKey: ['customerFeedback'],
+        queryFn: async () => {
+            const res = await axiosSecure.get('/feedback');
+            return res.data;
+        }
+    });
+
+    if (isLoading) return <p className="text-center py-8 text-lg">Loading customer feedback...</p>;
+    if (isError) return <p className="text-center text-red-500">Error: {error.message}</p>;
 
     return (
         <div className="my-16 px-6">
@@ -43,22 +48,8 @@ const CustomerFeedback = () => {
                             <p className="text-gray-700 italic">"{fb.comment}"</p>
                         </div>
                     </SwiperSlide>
-                    // <SwiperSlide key={fb._id}>
-                    //     <div className="flex flex-col h-full">
-                    //         <div className="bg-white shadow-md border p-6 rounded-xl flex flex-col grow justify-between">
-                    //             <div>
-                    //                 <p className="text-gray-700 italic mb-4">"{fb.comment}"</p>
-                    //                 <p className="font-bold text-lg">{fb.name}</p>
-                    //                 <p className="text-sm text-gray-500">{fb.email}</p>
-                    //             </div>
-                    //             <div className="mt-4 text-yellow-500">⭐⭐⭐⭐⭐</div>
-                    //         </div>
-                    //     </div>
-                    // </SwiperSlide>
                 ))}
             </Swiper>
-
-
         </div>
     );
 };

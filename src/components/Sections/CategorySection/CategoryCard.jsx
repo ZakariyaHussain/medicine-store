@@ -1,14 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
+//import { Link } from 'react-router';
 
 
 
 const CategoryCard = ({ category, image, count }) => {
     //const { category, image} = medicine || {};
     console.log(count);
-    //console.log(count);
-
-
 
     return (
         <Link to={`/category/${category}`}>

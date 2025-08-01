@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, useLocation, useNavigate } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SocialLogin from './SocialLogin';
 import UseAuth from '../../../hooks/useAuth';
 
@@ -28,9 +28,9 @@ const Login = () => {
         console.log(data);
     }
     return (
-        <div>
+        <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl px-6 mx-auto">
             <div>
-                <h2 className='text-3xl font-extrabold'>Welcome Back</h2>
+                <h2 className='text-center text-3xl font-extrabold'>Welcome Back</h2>
                 
             </div>
             <form onSubmit={handleSubmit(onSubmit)}>

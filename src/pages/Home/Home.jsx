@@ -11,7 +11,6 @@ const Home = () => {
         
         <div>
             <Banner></Banner>
-            <h1>this is the home page</h1>
             <CategorySection></CategorySection>
             <DiscountSection></DiscountSection>
             <RecommendedSection></RecommendedSection>

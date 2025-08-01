@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 import { useQuery } from '@tanstack/react-query';
-//import axios from 'axios';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../../contexts/AuthContext';
 import { imageUrl } from '../../../api/Utility';
@@ -28,9 +27,12 @@ const AskForAdvertisement = () => {
     const file = form.image.files[0];
     const image = await imageUrl(file);
     const description = form.description.value;
+    const name = form.itemName.value; // ✅ Make sure this matches input name
+    console.log(form);
 
     const adData = {
       image,
+      name,
       description,
       sellerEmail: user?.email,
       status: 'pending'
@@ -41,6 +43,7 @@ const AskForAdvertisement = () => {
       if (res.data.insertedId) {
         Swal.fire('Success', 'Advertisement submitted for review!', 'success');
         setShowModal(false);
+        console.log(showModal);
         refetch();
         form.reset();
       }
@@ -64,6 +67,7 @@ const AskForAdvertisement = () => {
             <thead>
               <tr>
                 <th>Image</th>
+                <th>Name</th>
                 <th>Description</th>
                 <th>Status</th>
               </tr>
@@ -74,11 +78,12 @@ const AskForAdvertisement = () => {
                   <td>
                     <img src={ad.image} alt="Ad" className="w-20 h-20 object-cover rounded" />
                   </td>
+                  <td>{ad.name || 'Unknown'}</td>
                   <td>{ad.description}</td>
                   <td>
                     <span className={`badge ${
-                      ad.status === 'approved' ? 'badge-success' : 
-                      ad.status === 'pending' ? 'badge-warning' : 
+                      ad.status === 'approved' ? 'badge-success' :
+                      ad.status === 'pending' ? 'badge-warning' :
                       'badge-error'
                     }`}>
                       {ad.status}
@@ -100,6 +105,7 @@ const AskForAdvertisement = () => {
             </form>
             <h3 className="font-bold text-lg mb-4">Submit New Advertisement</h3>
             <form onSubmit={handleAddAd} className="space-y-4">
+              <input type="text" name="itemName" placeholder="Medicine Name" className="input input-bordered w-full" required />
               <input type="file" name="image" accept="image/*" className="file-input w-full" required />
               <textarea name="description" className="textarea textarea-bordered w-full" placeholder="Advertisement description..." required></textarea>
               <button type="submit" className="btn btn-accent w-full">Submit</button>

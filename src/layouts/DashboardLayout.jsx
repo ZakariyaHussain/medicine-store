@@ -1,18 +1,19 @@
 import React from 'react';
-import { Link, NavLink, Outlet } from 'react-router';
-import { FaBox, FaHome, FaHourglassHalf, FaMapMarkedAlt, FaMoneyCheckAlt, FaUserEdit, FaUsers } from 'react-icons/fa';
-//import useAuth from '../hooks/useAuth';
-import UserLinks from './Dashboard/userLinks';
+//import { Link, Outlet } from 'react-router';
+//import { FaBox, FaHome, FaHourglassHalf, FaMapMarkedAlt, FaMoneyCheckAlt, FaUserEdit, FaUsers } from 'react-icons/fa';
 import SellerLinks from './Dashboard/SellerLinks';
 import AdminLinks from './Dashboard/AdminLinks';
 import useRole from '../hooks/useRole';
+import { Link, Outlet } from 'react-router-dom';
+//import UserLinks from './Dashboard/UserLinks';
+
 
 
 
 const DashboardLayout = () => {
     const [role, roleLoading] = useRole();
     if (roleLoading) return <p className="p-4">Loading role...</p>;
-    console.log(role);
+    //console.log(role);
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -51,9 +52,9 @@ const DashboardLayout = () => {
                     <Link to='/'><img src="https://i.ibb.co/0VskKqhF/logo.jpg" alt="Logo" /></Link>
 
                     {/* user dashboard */}
-                    {
+                    {/* {
                         role === "user" && <UserLinks></UserLinks>
-                    }
+                    } */}
 
 
                     {/* seller dashboard */}
@@ -63,9 +64,9 @@ const DashboardLayout = () => {
                     }
 
                     {/* admin links */}
-                    {/* {
-                        user?.role === "admin" && <AdminLinks></AdminLinks>
-                    } */}
+                    {
+                        role === "admin" && <AdminLinks></AdminLinks>
+                    }
                     
                 </ul>
             </div>

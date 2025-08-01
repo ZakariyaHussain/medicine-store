@@ -1,23 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import useAxios from '../../../hooks/useAxios';
 
 const DiscountSection = () => {
-  const [discounted, setDiscounted] = useState([]);
+  const axiosSecure = useAxios();
 
-  useEffect(() => {
-    axios.get('http://localhost:5000/discounted-medicines')
-      .then(res => setDiscounted(res.data))
-      .catch(err => console.error(err));
-  }, []);
+  const { data: discounted = [], isLoading, isError, error } = useQuery({
+    queryKey: ['discountedMedicines'],
+    queryFn: async () => {
+      const res = await axiosSecure.get('/discounted-medicines');
+      return res.data;
+    }
+  });
+
+  if (isLoading) return <p className="text-center text-lg py-10">Loading discounted medicines...</p>;
+  if (isError) return <p className="text-center text-red-500">Error: {error.message}</p>;
 
   return (
     <div className='my-12 px-6'>
-      <h2 className='text-center text-2xl font-bold mb-8'>💊 Discounted Medicines</h2>
+      <h2 className='text-center text-2xl font-bold mb-8'> Discounted Medicines</h2>
 
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
@@ -40,7 +46,12 @@ const DiscountSection = () => {
               </figure>
               <div className='card-body'>
                 <h3 className='text-lg font-bold'>{med.name}</h3>
-                <p>Price: <s>{med.price} ৳</s> → <span className='text-green-500 font-semibold'>{(med.price - (med.price * med.discount / 100)).toFixed(2)} ৳</span></p>
+                <p>
+                  Price: <s>{med.price} ৳</s> →{' '}
+                  <span className='text-green-500 font-semibold'>
+                    {(med.price - (med.price * med.discount) / 100).toFixed(2)} ৳
+                  </span>
+                </p>
                 <p className='text-sm text-red-500'>Discount: {med.discount}%</p>
               </div>
             </div>
@@ -52,3 +63,4 @@ const DiscountSection = () => {
 };
 
 export default DiscountSection;
+

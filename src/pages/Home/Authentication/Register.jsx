@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import UseAuth from '../../../hooks/useAuth';
-import { Link, useLocation, useNavigate } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { imageUrl } from '../../../api/Utility';
 import toast from 'react-hot-toast';
 import useAxios from '../../../hooks/useAxios';

@@ -1,7 +1,8 @@
 import React from 'react';
 import { useCart } from '../../contexts/CartContext';
 import { Trash2, Plus, Minus } from 'lucide-react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
+//import { Link } from 'react-router';
 //import { useNavigate } from 'react-router';
 
 const Cart = () => {

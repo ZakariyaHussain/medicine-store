@@ -1,5 +1,6 @@
 
-import {createBrowserRouter} from "react-router";
+//import { createBrowserRouter } from "react-router";
+import { createBrowserRouter } from "react-router-dom";
 import RootLayout from "../layouts/RootLayout";
 import Home from "../pages/Home/Home";
 import AuthLayout from "../layouts/AuthLayout";
@@ -18,6 +19,12 @@ import Invoice from "../pages/Invoice/Invoice";
 import PaymentHistory from "../pages/Dashboard/User/PaymentHistory";
 import SellerHome from "../pages/Dashboard/Seller/SellerHome";
 import AskForAdvertisement from "../pages/Dashboard/Seller/AskForAdvertisement";
+import AdminHome from "../pages/Dashboard/Admin/AdminHome";
+import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
+import ManageCategory from "../pages/Dashboard/Admin/ManageCategory";
+import PaymentManagement from "../pages/Dashboard/Admin/PaymentManagement";
+import SalesReport from "../pages/Dashboard/Admin/SalesReport";
+import ManageBannerAdvertise from "../pages/Dashboard/Admin/ManageBannerAdvertise";
 //import axios from "axios";
 
 
@@ -29,8 +36,8 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                loader: () => fetch('http://localhost:5000/medicines'),
-                Component: Home
+                loader: () => fetch('https://medicine-store-seven.vercel.app/medicines'),
+                element: <Home></Home>
             },
             {
                 path: "shop",
@@ -40,11 +47,6 @@ export const router = createBrowserRouter([
                 path: "addMedicine",
                 Component: AddMedicine
             },
-            // {
-            //     path: 'medicines/:id',
-            //     loader: ({params})=> fetch(`http://localhost:5000/medicines/${params.id}`),
-            //     Component: Cart
-            // },
             {
                 path: 'cart',
                 Component: Cart
@@ -61,7 +63,7 @@ export const router = createBrowserRouter([
                 path: 'invoice',
                 Component: Invoice
             }
-            
+
         ]
     },
     {
@@ -82,14 +84,14 @@ export const router = createBrowserRouter([
         path: "/dashboard",
         element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         children: [
-            
+
             //seller dashboard
             {
                 path: "sellerHome",
                 Component: SellerHome
             },
             {
-                path: 'ManageMedicine',
+                path: 'manageMedicine',
                 Component: ManageMedicine
             },
             {
@@ -99,7 +101,42 @@ export const router = createBrowserRouter([
             {
                 path: "askForAdvertisement",
                 Component: AskForAdvertisement
+            },
+
+            //seller dashboard
+            {
+                path: "adminHome",
+                Component: AdminHome
+            },
+            {
+                path: "manageUsers",
+                Component: ManageUsers
+            },
+            {
+                path: "manageCategory",
+                Component: ManageCategory
+            },
+            {
+                path: "paymentManagement",
+                Component: PaymentManagement
+            },
+            {
+                path: "salesReport",
+                Component: SalesReport
+            },
+            {
+                path: "manageBannerAdvertise",
+                Component: ManageBannerAdvertise
             }
         ]
-    }
+    },
+    // {
+    //     path: '/dashboard/admin-home',
+    //     element: (
+    //         <AdminRoute>
+    //             <AdminHome />
+    //         </AdminRoute>
+    //     )
+    // }
+
 ]);

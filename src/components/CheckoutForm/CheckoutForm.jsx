@@ -1,15 +1,17 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router';
-import useAxiosSecure from '../../hooks/useAxiosSecure';
+//import { useNavigate } from 'react-router';
+//import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { useCart } from '../../contexts/CartContext';
 import UseAuth from '../../hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
+import useAxios from '../../hooks/useAxios';
 
 const CheckoutForm = ({ total }) => {
     const stripe = useStripe();
     const elements = useElements();
-    const axiosSecure = useAxiosSecure();
+    const axiosSecure = useAxios();
     const [processing, setProcessing] = useState(false);
     const [error, setError] = useState('');
     const navigate = useNavigate();

@@ -1,19 +1,9 @@
 import React from 'react';
-//import { useNavigate } from 'react-router-dom';
-//import toast from 'react-hot-toast';
 import { useCart } from '../../contexts/CartContext';
 import CheckoutForm from '../../components/CheckoutForm/CheckoutForm';
 
 const Checkout = () => {
-  //const { cart, removeFromCart, updateQuantity } = useCart();
   const { cart } = useCart();
-  //const navigate = useNavigate();
-
-//   const handlePlaceOrder = () => {
-//     // In a real app, you'd send the cart to the server here
-//     toast.success('Order placed successfully!');
-//     navigate('/'); // Navigate to home or orders page
-//   };
 
   const totalPrice = cart.reduce(
     (sum, item) => sum + item.price * item.quantity,

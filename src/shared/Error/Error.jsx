@@ -1,6 +1,6 @@
 import Lottie from 'lottie-react';
 import React from 'react';
-import { Link, useRouteError } from 'react-router';
+import { Link, useRouteError } from 'react-router-dom';
 import LottieError from '../../assets/404 Page Not Found.json';
 
 const Error = () => {
