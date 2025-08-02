@@ -22,7 +22,7 @@ const CustomerFeedback = () => {
 
     return (
         <div className="my-16 px-6">
-            <h2 className="text-2xl font-bold text-center mb-6 text-sky-700">🗣 Customer Feedback</h2>
+            <h2 className="text-2xl font-bold text-center mb-6 text-sky-700"> Customer Feedback</h2>
 
             <Swiper
                 modules={[Pagination, Autoplay]}

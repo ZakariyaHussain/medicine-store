@@ -20,7 +20,7 @@ const Banner = () => {
     <Carousel autoPlay infiniteLoop showThumbs={false}>
       {banners.map(banner => (
         <div key={banner._id}>
-          <img src={banner.image} alt={banner.name} />
+          <img className="max-h-[500px] w-full" src={banner.image} alt={banner.name} />
           <p className="legend">{banner.name}</p>
         </div>
       ))}

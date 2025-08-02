@@ -4,6 +4,7 @@ import CategorySection from '../../components/Sections/CategorySection/CategoryS
 import DiscountSection from '../../components/Sections/DiscountSection/DiscountSection';
 import RecommendedSection from '../../components/Sections/RecommendedSection/RecommendedSection';
 import CustomerFeedback from '../../components/Sections/CustomerFeedback/CustomerFeedback';
+import RecentlyAdded from '../../components/Sections/RecentlyAdded/RecentlyAdded';
 
 
 const Home = () => {
@@ -14,6 +15,7 @@ const Home = () => {
             <CategorySection></CategorySection>
             <DiscountSection></DiscountSection>
             <RecommendedSection></RecommendedSection>
+            <RecentlyAdded></RecentlyAdded>
             <CustomerFeedback></CustomerFeedback>
         </div>
     );
