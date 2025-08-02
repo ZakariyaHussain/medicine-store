@@ -4,7 +4,7 @@ import useUserPayments from '../../../hooks/useUserPayments';
 
 
 
-const PaymentHistory = () => {
+const UserPaymentHistory = () => {
     const { user } = useAuth();
     const [payments, isLoading] = useUserPayments(user?.email);
 
@@ -53,4 +53,4 @@ const PaymentHistory = () => {
     );
 };
 
-export default PaymentHistory;
+export default UserPaymentHistory;

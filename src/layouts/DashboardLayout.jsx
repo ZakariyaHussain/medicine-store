@@ -1,18 +1,17 @@
 import React from 'react';
-//import { Link, Outlet } from 'react-router';
-//import { FaBox, FaHome, FaHourglassHalf, FaMapMarkedAlt, FaMoneyCheckAlt, FaUserEdit, FaUsers } from 'react-icons/fa';
 import SellerLinks from './Dashboard/SellerLinks';
 import AdminLinks from './Dashboard/AdminLinks';
 import useRole from '../hooks/useRole';
 import { Link, Outlet } from 'react-router-dom';
-//import UserLinks from './Dashboard/UserLinks';
-
+import UserLinks from './Dashboard/UserLInks';
+import useAuth from '../hooks/useAuth';
 
 
 
 const DashboardLayout = () => {
     const [role, roleLoading] = useRole();
-    if (roleLoading) return <p className="p-4">Loading role...</p>;
+    const { loading } = useAuth();
+    if (loading || roleLoading) return <p className="p-4">Loading role...</p>;
     //console.log(role);
     return (
         <div className="drawer lg:drawer-open">
@@ -52,9 +51,9 @@ const DashboardLayout = () => {
                     <Link to='/'><img src="https://i.ibb.co/0VskKqhF/logo.jpg" alt="Logo" /></Link>
 
                     {/* user dashboard */}
-                    {/* {
+                    {
                         role === "user" && <UserLinks></UserLinks>
-                    } */}
+                    }
 
 
                     {/* seller dashboard */}

@@ -15,7 +15,7 @@ const Home = () => {
             <CategorySection></CategorySection>
             <DiscountSection></DiscountSection>
             <RecommendedSection></RecommendedSection>
-            <RecentlyAdded></RecentlyAdded>
+            
             <CustomerFeedback></CustomerFeedback>
         </div>
     );

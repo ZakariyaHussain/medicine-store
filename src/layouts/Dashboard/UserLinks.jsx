@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 const UserLinks = () => {
     return (
         <>
-            <li><NavLink to='/dashboard/paymentHistory'><FaHome className="inline mr-2" />Payment History</NavLink></li>
+            <li><NavLink to='/dashboard/userPaymentHistory'><FaHome className="inline mr-2" />Payment History</NavLink></li>
         </>
     );
 };

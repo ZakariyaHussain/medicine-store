@@ -16,8 +16,9 @@ import Cart from "../pages/Cart/Cart";
 import CategoryDetails from "../pages/Category/CategoryDetails";
 import Checkout from "../pages/Checkout/Checkout";
 import Invoice from "../pages/Invoice/Invoice";
-import PaymentHistory from "../pages/Dashboard/User/PaymentHistory";
+import UserPaymentHistory from "../pages/Dashboard/User/UserPaymentHistory";
 import SellerHome from "../pages/Dashboard/Seller/SellerHome";
+import SellerPaymentHistory from "../pages/Dashboard/Seller/SellerPaymentHistory";
 import AskForAdvertisement from "../pages/Dashboard/Seller/AskForAdvertisement";
 import AdminHome from "../pages/Dashboard/Admin/AdminHome";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
@@ -25,6 +26,7 @@ import ManageCategory from "../pages/Dashboard/Admin/ManageCategory";
 import PaymentManagement from "../pages/Dashboard/Admin/PaymentManagement";
 import SalesReport from "../pages/Dashboard/Admin/SalesReport";
 import ManageBannerAdvertise from "../pages/Dashboard/Admin/ManageBannerAdvertise";
+
 //import axios from "axios";
 
 
@@ -66,6 +68,7 @@ export const router = createBrowserRouter([
 
         ]
     },
+
     {
         path: "/",
         Component: AuthLayout,
@@ -80,10 +83,17 @@ export const router = createBrowserRouter([
             }
         ]
     },
+    
     {
         path: "/dashboard",
         element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         children: [
+
+            //user dashboard
+            {
+                path: "userPaymentHistory",
+                Component: UserPaymentHistory
+            },
 
             //seller dashboard
             {
@@ -96,14 +106,14 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'paymentHistory',
-                Component: PaymentHistory
+                Component: SellerPaymentHistory
             },
             {
                 path: "askForAdvertisement",
                 Component: AskForAdvertisement
             },
 
-            //seller dashboard
+            //admin dashboard
             {
                 path: "adminHome",
                 Component: AdminHome

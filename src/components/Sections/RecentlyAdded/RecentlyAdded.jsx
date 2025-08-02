@@ -2,11 +2,11 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 //import useAxios from '../../../hooks/useAxios';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
-import { data, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const RecentlyAdded = () => {
-  //const axios = useAxios();
   const axios = useAxiosSecure();
+  //const axios = useAxiosSecure();
 
   const { data: medicines = [], isLoading } = useQuery({
     queryKey: ['recentMedicines'],
@@ -15,7 +15,6 @@ const RecentlyAdded = () => {
       return res.data;
     }
   });
-  console.log(data);
 
   return (
     <div className="my-12 px-4 max-w-7xl mx-auto">
