@@ -36,7 +36,7 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="navbar bg-[#22b1a4] shadow-sm px-4">
+    <nav className="navbar w-full sticky top-0 z-50 bg-[#22b1a4] shadow-sm px-4">
       {/* --- left: logo & mobile menu --- */}
       <div className="navbar-start">
         <div className="dropdown">
@@ -45,11 +45,11 @@ const Navbar = () => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
             </svg>
           </button>
-          <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 w-52 rounded-box bg-base-100 p-2 shadow z-[1]">
+          <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 w-52 rounded-box bg-[#22b1a4] p-2 shadow z-[1]">
             {navItems}
           </ul>
         </div>
-        <Link to="/" className="btn btn-ghost text-xl"><img src="https://i.ibb.co/0VskKqhF/logo.jpg" alt="Logo" /></Link>
+        <Link to="/" className="btn btn-ghost text-xl"><img src="https://i.ibb.co/0VskKqhF/logo.jpg" alt="Logo" className='w-[80%] h-[80%] sm:w-full sm:h-full' /></Link>
       </div>
 
       {/* --- center nav links (desktop) --- */}

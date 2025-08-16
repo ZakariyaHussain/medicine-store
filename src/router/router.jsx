@@ -1,5 +1,4 @@
 
-//import { createBrowserRouter } from "react-router";
 import { createBrowserRouter } from "react-router-dom";
 import RootLayout from "../layouts/RootLayout";
 import Home from "../pages/Home/Home";
@@ -26,8 +25,6 @@ import ManageCategory from "../pages/Dashboard/Admin/ManageCategory";
 import PaymentManagement from "../pages/Dashboard/Admin/PaymentManagement";
 import SalesReport from "../pages/Dashboard/Admin/SalesReport";
 import ManageBannerAdvertise from "../pages/Dashboard/Admin/ManageBannerAdvertise";
-
-//import axios from "axios";
 
 
 export const router = createBrowserRouter([
@@ -140,13 +137,5 @@ export const router = createBrowserRouter([
             }
         ]
     },
-    // {
-    //     path: '/dashboard/admin-home',
-    //     element: (
-    //         <AdminRoute>
-    //             <AdminHome />
-    //         </AdminRoute>
-    //     )
-    // }
 
 ]);
