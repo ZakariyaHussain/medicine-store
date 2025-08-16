@@ -6,8 +6,8 @@ import { useCart } from '../../contexts/CartContext';
 
 const Navbar = () => {
   const { user, logout } = UseAuth();
-  const {cart} = useCart();
-  
+  const { cart } = useCart();
+
 
   const handleLogout = () => {
     logout()
@@ -17,14 +17,26 @@ const Navbar = () => {
 
   const navItems = (
     <>
-      <li><NavLink to="/">Home</NavLink></li>
-      <li><NavLink to="/shop">Shop</NavLink></li>
-      <li><NavLink to="/addMedicine">Add Medicine</NavLink></li>
+      <li><NavLink to="/" className={({ isActive }) =>
+        isActive
+          ? "text-white font-bold border-b-2 border-white"
+          : "text-white/80 hover:text-white"
+      }>Home</NavLink></li>
+      <li><NavLink to="/shop" className={({ isActive }) =>
+        isActive
+          ? "text-white font-bold border-b-2 border-white"
+          : "text-white/80 hover:text-white"
+      }>Shop</NavLink></li>
+      <li><NavLink to="/addMedicine" className={({ isActive }) =>
+        isActive
+          ? "text-white font-bold border-b-2 border-white"
+          : "text-white/80 hover:text-white"
+      }>Add Medicine</NavLink></li>
     </>
   );
 
   return (
-    <nav className="navbar bg-base-100 shadow-sm px-4">
+    <nav className="navbar bg-[#22b1a4] shadow-sm px-4">
       {/* --- left: logo & mobile menu --- */}
       <div className="navbar-start">
         <div className="dropdown">
@@ -63,7 +75,7 @@ const Navbar = () => {
           <div className="indicator">
             <ShoppingCart className="w-5 h-5" />
             <span className="badge badge-sm indicator-item">{cart.length}</span>
-            
+
           </div>
         </Link>
 
